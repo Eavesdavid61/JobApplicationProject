@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Vacancy Application - Jaimie Smiles Organization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Jaimie Smiles Organization" class="logo">
+        <h1>Jaimie Smiles Organization</h1>
+        <p class="subheading">Join our creative team in the entertainment industry!</p>
+
+        <h2>Job Vacancy Application</h2>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <label for="name">Full Name:</label>
+            <input type="text" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="phone" required>
+
+            <label for="position">Position Applied For:</label>
+            <select name="position" id="position" required>
+                <option value="">-- Select a Position --</option>
+                <option value="Marketing Specialist">Marketing Specialist</option>
+                <option value="Social Media Management">Social Media Management</option>
+                <option value="Driver">Driver</option>
+            </select>
+
+            <p id="salary-info"></p>
+
+            <label for="resume">Upload Resume (PDF/DOCX):</label>
+            <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>
