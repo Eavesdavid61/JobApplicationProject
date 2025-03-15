@@ -5,9 +5,9 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
-
+app.config['SERVER_NAME'] = 'jaimieagencyapp.onrender.com'
 # MongoDB Configuration
-app.config["MONGO_URI"] = "mongodb://localhost:27017/mydatabase"
+app.config["MONGO_URI"] = "mongodb+srv://eavesdavid61:internaL123@cluster0.7w9qz.mongodb.net/Mydatabase?retryWrites=true&w=majority&appName=Cluster0"
 mongo = PyMongo(app)
 
 # File Upload Configuration
