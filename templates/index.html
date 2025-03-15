@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Vacancy Application - Jaimie Smiles Organization</title>
+    
+    <!-- Link to CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+    <!-- Link to JavaScript file -->
     <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
@@ -14,28 +18,52 @@
         <p class="subheading">Join our creative team in the entertainment industry!</p>
 
         <h2>Job Vacancy Application</h2>
-        <form action="/" method="post" enctype="multipart/form-data">
-            <label for="name">Full Name:</label>
-            <input type="text" name="name" required>
 
-            <label for="email">Email Address:</label>
-            <input type="email" name="email" required>
+        <!-- Flash Messages Section -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <p class="flash-message {{ category }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Form: Method is POST and encoding is multipart/form-data for file upload -->
+        <form action="/" method="POST" enctype="multipart/form-data" id="jobApplicationForm">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" name="name" id="name" required>
+            </div>
 
-            <label for="phone">Phone Number:</label>
-            <input type="text" name="phone" required>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
 
-            <label for="position">Position Applied For:</label>
-            <select name="position" id="position" required>
-                <option value="">-- Select a Position --</option>
-                <option value="Marketing Specialist">Marketing Specialist</option>
-                <option value="Social Media Management">Social Media Management</option>
-                <option value="Driver">Driver</option>
-            </select>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" name="phone" id="phone" required>
+            </div>
 
-            <p id="salary-info"></p>
+            <div class="form-group">
+                <label for="position">Position Applied For:</label>
+                <select name="position" id="position" required>
+                    <option value="">-- Select a Position --</option>
+                    <option value="Marketing Specialist">Marketing Specialist</option>
+                    <option value="Social Media Management">Social Media Management</option>
+                    <option value="Driver">Driver</option>
+                </select>
+            </div>
 
-            <label for="resume">Upload Resume (PDF/DOCX):</label>
-            <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+            <!-- Salary Info (hidden initially) -->
+            <p id="salary-info" style="display: none;"></p>
+
+            <div class="form-group">
+                <label for="file">Upload Resume (PDF/DOCX):</label>
+                <input type="file" name="file" id="file" accept=".pdf,.doc,.docx" required>
+            </div>
 
             <button type="submit">Submit Application</button>
         </form>
